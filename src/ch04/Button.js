@@ -29,6 +29,7 @@ function Button( { text, number, setNumber }) {
     }
 
     return <button onClick={ handleClick }>{ text }</button>
+    
 
 }
 
