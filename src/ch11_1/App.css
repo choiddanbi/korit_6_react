@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin: 30px auto;
+    border: 1px solid #dbdbdb;
+    padding: 5px;
+    width: 1400px;
+    height: 800px;
+}
+
+.container > h1 {
+    margin: 10px 30px 15px;
+    cursor: default;
+}
