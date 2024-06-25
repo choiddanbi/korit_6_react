@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import "./style.css";
 
 
-function DataTableBody({ mode, setMode, products, setProducts, isDeleting, setDeleting }) {
-    // const [ isChecks, setChecks ] = useState([]);
-    const [ viewProducts, setViewProducts ] = useState([]); // 체크박스 체크 확인용
+function DataTableBody({ mode, setMode, products, setProducts, isDeleting, setDeleting, setEditProductId }) {
+    const [ viewProducts, setViewProducts ] = useState([]); // 체크박스 체크 확인용 => products들의 checked 속성을 확인
     const [ checkedAll, setCheckedAll ] = useState(false); // 전체 체크박스 확인용
 
 
@@ -42,6 +41,13 @@ function DataTableBody({ mode, setMode, products, setProducts, isDeleting, setDe
     }, [isDeleting]);
 
 
+    useEffect(() => {
+        if(mode === 2) { // 수정
+            const [ selectedProduct ] = viewProducts.filter(product => product.isChecked); //product.isChecked true인 product를 가져와서 새배열에 담기
+
+            setEditProductId(!selectedProduct ? 0 : selectedProduct.id);
+        }
+    }, [viewProducts] );
 
     // 체크 모두 풀기 // isChecked : false다풀어
     // isChecked속성을 추가한 새로운 Viewproducts배열 생성

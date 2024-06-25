@@ -1,9 +1,9 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./style.css";
 import Swal from "sweetalert2";
 
 
-function DataTableHeader({ mode, setMode , setProducts, setDeleting }) {
+function DataTableHeader({ mode, setMode , setProducts, setDeleting, products, editProdutcId }) {
 
     const emptyProduct = {
         id: "",
@@ -20,7 +20,12 @@ function DataTableHeader({ mode, setMode , setProducts, setDeleting }) {
         price: useRef()
     };
 
-    const [ inputData, setInputData ] = useState({...emptyProduct});
+    const [ inputData, setInputData ] = useState({...emptyProduct}); // 입력창에 있는 거
+
+    useEffect(() => {
+        const [ product ] = products.filter(product => product.id === editProdutcId) // 체크된 id랑 product.id 하나씩 꺼내서 비교했을 떄 
+        setInputData(!product ? {...emptyProduct} : { ...product }); // 같은게 있으면 입력창에 product객체 한놈 , 없으면 빈객체
+    }, [editProdutcId]);
 
 
     const handleInputChange = (e) => {
@@ -71,8 +76,29 @@ function DataTableHeader({ mode, setMode , setProducts, setDeleting }) {
             resetMode();
         }
         if(mode === 2) {
-            alert("상품수정");
-        }
+            Swal.fire ({
+                title:"상품 정보 수정",
+                showCancelButton: true,
+                confirmButtonText:"확인",
+                cancelButtonText: "취소",
+            }).then(result => {
+                if(result.confirmed) {
+                    setProducts(products => [
+                        ...products.map(product => {
+                            if(product.id === editProdutcId) {
+                                const { id, ...rest } = inputData; // inputData에서 id 를 제외한 값들을 rest에 담아서 가져오기 (id가 문자열일 수도 있어서)
+                                return {
+                                    ...product, // id 포함해서 다 가져오고
+                                    ...rest // id 제외한 거만 가져와서 덮어쓰기 = id는 수정시키지 않기 위해서
+                                }
+                            }
+                            return product;
+                        })
+                    ]);
+                resetMode();
+            }
+        });
+    }
         if(mode === 3) {
             Swal.fire({
                 title: "상품 정보 삭제",
