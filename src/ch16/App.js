@@ -9,7 +9,7 @@ function App() {
     const emptyUser = {
         name:"",
         email:"",
-        id:""
+        imgSrc:""
     }
 
     // input 창에 입력하면 객체에 저장
@@ -23,8 +23,7 @@ function App() {
 
     const handleOkButton = (e) => {
         setUserList([
-            ...userList,
-            {...user, id:userList.length + 1}
+            ...userList, user
         ]);
     }
 
@@ -34,7 +33,6 @@ function App() {
     }, []);
 
     
-
 
     const handleImgClick = () => {
         const fileElement = document.createElement("input");
@@ -68,7 +66,7 @@ function App() {
                 <div>이메일</div>
                 <input type="text" className="btn" onchange={handleInputChange} />
 
-                <button className="btn" onKeyDown={} >저장</button>
+                <button className="btn" onKeyDown={handleOkButton} >저장</button>
             </div>
     );
 }
