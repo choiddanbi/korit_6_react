@@ -27,4 +27,3 @@ function RouteStudyPage(props) {
 }
 
 export default RouteStudyPage;
-

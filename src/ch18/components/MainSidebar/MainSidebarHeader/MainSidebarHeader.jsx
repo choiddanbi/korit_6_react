@@ -1,10 +1,15 @@
 /** @jsxImportSource @emotion/react */
-import { FaBars, FaBook, FaHome } from "react-icons/fa";
+import { FaBars, FaBook } from "react-icons/fa";
 import MainContainer from "../../MainContainer/MainContainer";
 import * as s from "./style";
+import { useRecoilState } from "recoil";
+import { MainSidebarShowAtom } from "../../../atoms/mainSidebarShowAtom";
 
 // 사이드바 ㅏ닫기
-function MainSidebarHeader({setMainSidebarShow}) {
+function MainSidebarHeader() {
+    const [ mainSidebarShow, setMainSidebarShow ] = useRecoilState(MainSidebarShowAtom);
+
+
     const handleMainMenuToggleClick = () => {
         setMainSidebarShow(false);
     }

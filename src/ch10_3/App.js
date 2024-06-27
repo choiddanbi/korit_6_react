@@ -107,7 +107,7 @@ function App() {
     배열.map((value, index) => { return })  // 배열안의 값들을 모두 함수 돌려서 새로운 배열에 옮겨 
       -> ex) userList 에 value 는 user 객체
     
-    배열.filter((value, index) => { return })  // 배열안의 값들 중 조건에 맞는 거만 새로운 배열에 옮겨
+    배열.filter((value, index) => { 조건 return })  // 배열안의 값들 중 조건에 맞는 거만 새로운 배열에 옮겨
      * /
 
 

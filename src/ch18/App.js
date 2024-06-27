@@ -7,18 +7,14 @@ import MainSidebar from './components/MainSidebar/MainSidebar';
 import MainBody from './components/MainBody/MainBody';
 
 function App() {
-    const [ isMainSidebarShow, setMainSidebarShow ] = useState(false); // 사이드바 숨겼다 꺼냈다 버튼용, 사이드바 상태
 
     return (
         <>
             <Global styles={reset}/>
             <MainLayout>
-                <MainHeader setMainSidebarShow={setMainSidebarShow} />
+                <MainHeader />
                 <MainBody />
-                <MainSidebar 
-                    isMainSidebarShow={isMainSidebarShow}
-                    setMainSidebarShow={setMainSidebarShow}
-                />
+                <MainSidebar />
             </MainLayout>
         </>
     );
